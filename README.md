@@ -4,7 +4,31 @@ This script is designed to test the stability of the internet connection on a Wi
 
 ## Prerequisites
 
-- Windows PowerShell (comes pre-installed on Windows 10 and Windows 11)
+- Windows PowerShell 7+ (powershell comes pre-installed on Windows 10 and Windows 11, though your version may be older)
+
+### Installing PowerShell 7+
+
+If you have Windows 10 (version 1809+) or Windows 11, install PowerShell 7+ using winget:
+
+Open Command Prompt or Windows PowerShell as Administrator and run:
+
+```cmd
+winget install Microsoft.PowerShell
+```
+
+To verify the installation:
+
+```cmd
+pwsh -Command "$PSVersionTable.PSVersion"
+```
+
+This should show version 7.x.x or higher
+
+**Alternative methods:**
+- Download the MSI installer from: https://github.com/PowerShell/PowerShell/releases/latest
+- Install from Microsoft Store (search for "PowerShell")
+
+**Note:** PowerShell 7+ installs alongside Windows PowerShell 5.1 and doesn't replace it. The script will use PowerShell 7+ (`pwsh` command).
 
 ## How to download
 
@@ -30,6 +54,7 @@ unzip windows-internet-stability-test.zip
 The default settings are:
 
 - Target: 8.8.8.8 (Google DNS)
+- Ping timeout: 1 second (detects failures faster with PowerShell 7+)
 - Ping interval: 1 second (1 second = 60 pings/minute)
 - Summary interval: 3600 seconds (3600 seconds = 1 hour)
 

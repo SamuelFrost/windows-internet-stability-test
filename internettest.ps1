@@ -1,7 +1,8 @@
 # Configuration
-$target = "8.8.8.8"  # Google DNS - you can change this to your ISP's DNS or gateway
-$pollIntervalSeconds = 1  # Wait between pings (1 second = 60 pings/minute)
-$intervalSeconds = 3600  # Summary interval (3600 seconds = 1 hour)
+$target = "8.8.8.8" # Google DNS - you can change this to your ISP's DNS or gateway
+$pingTimeoutSeconds = 1 # Timeout for each ping (1 second)
+$pollIntervalSeconds = 1 # Wait between pings (1 second = 60 pings/minute)
+$intervalSeconds = 3600 # Summary interval (3600 seconds = 1 hour)
 
 # Counters
 $success = 0
@@ -18,9 +19,8 @@ Write-Host "Monitoring connection to $target... (Ctrl+C to stop)" -ForegroundCol
 Write-Host "Ping interval: $pollIntervalSeconds seconds | Summary interval: $intervalSeconds seconds`n" -ForegroundColor Gray
 
 while ($true) {
-    # Send a single ping using Test-Connection (compatible with PowerShell 5.1)
     try {
-        $result = Test-Connection -ComputerName $target -Count 1 -Quiet
+        $result = Test-Connection -ComputerName $target -Count 1 -Quiet -TimeoutSeconds $pingTimeoutSeconds
         if ($result) {
             $success++
             $totalSuccess++
@@ -68,7 +68,7 @@ while ($true) {
         Write-Host "Total Successes: $totalSuccess"
         Write-Host "Total Failures:  $totalFailure"
         Write-Host "Overall Uptime:  $overallUptime%"
-        Write-Host "All failure times (JST): [$($allFailures -join ', ')]" -ForegroundColor DarkYellow
+        Write-Host "All failure times: [$($allFailures -join ', ')]" -ForegroundColor DarkYellow
         Write-Host "-----------------------------------------`n"
 
         # Reset counters for the next interval block
