@@ -1,5 +1,5 @@
 # Configuration
-$target = "8.8.8.8" # Google DNS - you can change this to your ISP's DNS or gateway
+$target = "8.8.8.8" # Google DNS - you can change this to your ISP's DNS or gateway (use the ipconfig command to find your default gateway)
 $pingTimeoutSeconds = 1 # Timeout for each ping (1 second)
 $pollIntervalSeconds = 1 # Wait between pings (1 second = 60 pings/minute)
 $intervalSeconds = 3600 # Summary interval (3600 seconds = 1 hour)
