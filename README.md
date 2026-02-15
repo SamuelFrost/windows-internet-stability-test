@@ -25,6 +25,7 @@ pwsh -Command "$PSVersionTable.PSVersion"
 This should show version 7.x.x or higher
 
 **Alternative methods:**
+
 - Download the MSI installer from: https://github.com/PowerShell/PowerShell/releases/latest
 - Install from Microsoft Store (search for "PowerShell")
 
@@ -60,4 +61,4 @@ The default settings are:
 
 2. Run the internettest.bat file.
 3. The script will run in a new PowerShell window and print a summary of the results to the console every interval.
-4. The script will run indefinitely until the user closes the PowerShell window or stops it with Ctrl+C.
+4. The script will run indefinitely until you close the PowerShell window or stop it with Ctrl+C, which will display a final summary before exiting.
